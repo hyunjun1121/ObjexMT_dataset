@@ -1,4 +1,4 @@
-# `ObjexMT`: OBJEX(MT) Dataset — `OBJEX_dataset.xlsx`
+# `ObjexMT`: OBJEXMT Dataset — `ObjexMT_dataset.xlsx`
 
 This repository provides the **single-file dataset** for the paper ***ObjexMT: Objective Extraction and Metacognitive Calibration for LLM‑as‑a‑Judge under Multi‑Turn Jailbreaks*** (arXiv:2508.16889) ([arXiv][1]).
 
@@ -11,11 +11,11 @@ This repository provides the **single-file dataset** for the paper ***ObjexMT: O
 * **arXiv ID**: 2508.16889, submitted **23 August 2025** ([arXiv][1])
 * **DOI**: [https://doi.org/10.48550/arXiv.2508.16889](https://doi.org/10.48550/arXiv.2508.16889) ([arXiv][1])
 
-The paper introduces the **OBJEX(MT)** benchmark for testing an LLM’s ability to infer a single‑sentence latent objective from a multi‑turn jailbreak dialogue, along with its calibration of confidence. Key evaluation metrics include accuracy (via a fixed threshold τ\* = 0.61), ECE, Brier score, Wrong\@High‑Conf, and risk–coverage curves. The models evaluated are GPT‑4.1, Claude‑Sonnet‑4, and Qwen3‑235B‑A22B‑FP8 across multiple datasets (SafeMT Attack\_600, SafeMTData\_1K, MHJ, CoSafe), with Claude‑Sonnet‑4 performing best ([arXiv][1]).
+The paper introduces the **OBJEXMT** benchmark for testing an LLM’s ability to infer a single‑sentence latent objective from a multi‑turn jailbreak dialogue, along with its calibration of confidence. Key evaluation metrics include accuracy (via a fixed threshold τ\* = 0.61), ECE, Brier score, Wrong\@High‑Conf, and risk–coverage curves. The models evaluated are GPT‑4.1, Claude‑Sonnet‑4, and Qwen3‑235B‑A22B‑FP8 across multiple datasets (SafeMT Attack\_600, SafeMTData\_1K, MHJ, CoSafe), with Claude‑Sonnet‑4 performing best ([arXiv][1]).
 
 ---
 
-## 2. Dataset Overview — `OBJEX_dataset.xlsx`
+## 2. Dataset Overview — `ObjexMT_dataset.xlsx`
 
 This single Excel file contains all artifact logs used in the study:
 
@@ -34,7 +34,7 @@ Each sheet is precisely structured and corresponds to the paper’s analysis; se
 * Contains one sheet per model:
 
   * `harmful_gpt_4.1`
-  * `harmful_claude-sonnet-4'
+  * `harmful_claude-sonnet-4`
   * `harmful_Qwen3-235B-A22B-FP8`
 
 * **Columns**:
@@ -47,7 +47,7 @@ Each sheet is precisely structured and corresponds to the paper’s analysis; se
 * Contains one sheet per model:
 
   * `similarity_gpt-4.1`
-  * `similarity_claude-sonnet-4-2025`
+  * `similarity_claude-sonnet-4`
   * `similarity_Qwen3-235B-A22B-FP8`
 
 * **Columns**:
@@ -63,7 +63,7 @@ Detailed category distributions, coverage, and error counts align with the paper
 ```python
 import pandas as pd
 
-xls = pd.ExcelFile("OBJEX_dataset.xlsx")
+xls = pd.ExcelFile("ObjexMT_dataset.xlsx")
 harm = pd.read_excel(xls, "harmful_gpt_4.1")
 sim  = pd.read_excel(xls, "similarity_gpt-4.1")
 
