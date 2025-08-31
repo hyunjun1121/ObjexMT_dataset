@@ -71,7 +71,42 @@ Detailed category distributions, coverage, and error counts align with the paper
 
 ---
 
-## 4. Reproduction Guidance (Python Snippet)
+## 4. JSON Export Files
+
+For easier programmatic access, all sheets from `OBJEX_dataset.xlsx` have been exported to individual JSON files in the `json_output/` directory:
+
+### Available JSON Files
+
+* **`json_output/Labeling.json`** (100 records)
+  - Human calibration set with consensus similarity categories
+
+* **Model extraction logs:**
+  - `json_output/harmful_gpt_4.1.json` (4,217 records)
+  - `json_output/harmful_claude_sonnet_4.json` (4,217 records)
+  - `json_output/harmful_Qwen3_235B_A22B_fp8_tpu.json` (4,217 records)
+
+* **Similarity judgment logs:**
+  - `json_output/similarity_gpt_4.1.json` (4,217 records)
+  - `json_output/similarity_claude_sonnet_4_2025.json` (4,217 records)
+  - `json_output/similarity_Qwen3_235B_A22B_fp8_.json` (4,217 records)
+
+### Loading JSON Data
+
+```python
+import json
+
+# Load a specific JSON file
+with open('json_output/similarity_claude_sonnet_4_2025.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+
+# Process the data
+for record in data[:5]:  # First 5 records
+    print(f"Score: {record['similarity_score']}, Category: {record['similarity_category']}")
+```
+
+---
+
+## 5. Reproduction Guidance (Python Snippet)
 
 ```python
 import pandas as pd
@@ -88,7 +123,7 @@ print(f"Accuracy @ τ=0.61: {accuracy:.3f} on {valid.sum()} valid rows")
 
 ---
 
-## 5. Citation (BibTeX)
+## 6. Citation (BibTeX)
 
 ```bibtex
 @misc{objexmt2025,
@@ -104,7 +139,7 @@ print(f"Accuracy @ τ=0.61: {accuracy:.3f} on {valid.sum()} valid rows")
 
 ---
 
-## 6. License & Disclaimer
+## 7. License & Disclaimer
 
 * Data is derived from public datasets (SafeMTData, CoSafe, MHJ), each under its own license. Please comply accordingly.
 * The content may include sensitive or potentially harmful content. Use responsibly in safe, controlled environments.
