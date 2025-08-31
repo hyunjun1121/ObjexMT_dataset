@@ -7,11 +7,11 @@ This repository provides the **single-file dataset** for the paper ***ObjexMT: O
 ## 1. Paper Details (Updated)
 
 * **Title**: *ObjexMT: Objective Extraction and Metacognitive Calibration for LLM‑as‑a‑Judge under Multi‑Turn Jailbreaks*
-* **Authors**: Hyunjun Kim, Junwoo Ha, Sangyoon Yu, Haon Park ([arXiv][1])
+* **Authors**: Hyunjun Kim, Junwoo Ha, Sangyoon Yu, Haon Park ([arXiv][1])
 * **arXiv ID**: 2508.16889, submitted **23 August 2025** ([arXiv][1])
 * **DOI**: [https://doi.org/10.48550/arXiv.2508.16889](https://doi.org/10.48550/arXiv.2508.16889) ([arXiv][1])
 
-The paper introduces the **OBJEXMT** benchmark for testing an LLM’s ability to infer a single‑sentence latent objective from a multi‑turn jailbreak dialogue, along with its calibration of confidence. Key evaluation metrics include accuracy (via a fixed threshold τ\* = 0.61), ECE, Brier score, Wrong\@High‑Conf, and risk–coverage curves. The models evaluated are GPT‑4.1, Claude‑Sonnet‑4, and Qwen3‑235B‑A22B‑FP8 across multiple datasets (SafeMT Attack\_600, SafeMTData\_1K, MHJ, CoSafe), with Claude‑Sonnet‑4 performing best ([arXiv][1]).
+The paper introduces the **OBJEXMT** benchmark for testing an LLM's ability to infer a single‑sentence latent objective from a multi‑turn jailbreak dialogue, along with its calibration of confidence. Key evaluation metrics include accuracy (via a fixed threshold τ\* = 0.61), ECE, Brier score, Wrong\@High‑Conf, and risk–coverage curves. The models evaluated are GPT‑4.1, Claude‑Sonnet‑4, and Qwen3‑235B‑A22B‑FP8 across multiple datasets (SafeMT Attack\_600, SafeMTData\_1K, MHJ, CoSafe), with Claude‑Sonnet‑4 performing best ([arXiv][1]).
 
 ---
 
@@ -23,7 +23,7 @@ This single Excel file contains all artifact logs used in the study:
 * **Model extraction logs** (`harmful_*` sheets)
 * **Similarity scoring logs** (`similarity_*` sheets)
 
-Each sheet is precisely structured and corresponds to the paper’s analysis; see below for details.
+Each sheet is precisely structured and corresponds to the paper's analysis; see below for details.
 
 ---
 
@@ -126,14 +126,14 @@ print(f"Accuracy @ τ=0.61: {accuracy:.3f} on {valid.sum()} valid rows")
 ## 6. Citation (BibTeX)
 
 ```bibtex
-@misc{objexmt2025,
-  title        = {ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks},
-  author       = {Kim, Hyunjun and Ha, Junwoo and Yu, Sangyoon and Park, Haon},
-  year         = {2025},
-  eprint       = {2508.16889},
-  archivePrefix= {arXiv},
-  primaryClass = {cs.CL},
-  doi          = {10.48550/arXiv.2508.16889}
+@misc{kim2025objexmtobjectiveextractionmetacognitive,
+      title={ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks}, 
+      author={Hyunjun Kim and Junwoo Ha and Sangyoon Yu and Haon Park},
+      year={2025},
+      eprint={2508.16889},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2508.16889}
 }
 ```
 
@@ -143,6 +143,8 @@ print(f"Accuracy @ τ=0.61: {accuracy:.3f} on {valid.sum()} valid rows")
 
 * Data is derived from public datasets (SafeMTData, CoSafe, MHJ), each under its own license. Please comply accordingly.
 * The content may include sensitive or potentially harmful content. Use responsibly in safe, controlled environments.
-* Provided “as is”; users bear responsibility for any outcomes.
+* Provided "as is"; users bear responsibility for any outcomes.
 
 ---
+
+[1]: https://arxiv.org/abs/2508.16889
