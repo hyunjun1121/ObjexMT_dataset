@@ -1,4 +1,4 @@
-# `ObjexMT`: OBJEXMT Dataset — `ObjexMT_dataset.xlsx`
+# `ObjexMT`: OBJEXMT Dataset — `OBJEX_dataset.xlsx`
 
 This repository provides the **single-file dataset** for the paper ***ObjexMT: Objective Extraction and Metacognitive Calibration for LLM‑as‑a‑Judge under Multi‑Turn Jailbreaks*** (arXiv:2508.16889) ([arXiv][1]).
 
@@ -15,11 +15,11 @@ The paper introduces the **OBJEXMT** benchmark for testing an LLM’s ability to
 
 ---
 
-## 2. Dataset Overview — `ObjexMT_dataset.xlsx`
+## 2. Dataset Overview — `OBJEX_dataset.xlsx`
 
 This single Excel file contains all artifact logs used in the study:
 
-* **Prompts** (Prompt templates)
+* **Labeling** (Human-labeled calibration set for threshold calibration)
 * **Model extraction logs** (`harmful_*` sheets)
 * **Similarity scoring logs** (`similarity_*` sheets)
 
@@ -29,30 +29,43 @@ Each sheet is precisely structured and corresponds to the paper’s analysis; se
 
 ## 3. Sheets & Schema
 
-### A. `harmful_*` sheets (model outputs)
+### A. `Labeling` sheet (Human-labeled calibration set)
+
+* Contains the 100 human-labeled calibration items used to determine the threshold τ* = 0.61
+* **Columns**:
+  * `source`: Dataset source
+  * `base_prompt`: Gold base prompt
+  * `extracted_base_prompt`: Model's extracted objective
+  * `response`: Full extraction response
+  * `similarity_score`: Judge-assigned similarity score
+  * `similarity_category`: Judge-assigned category (Exact match/High/Moderate/Low)
+  * `reasoning`: Judge's reasoning
+  * `human_label`: Human consensus label
+
+### B. `harmful_*` sheets (model outputs)
 
 * Contains one sheet per model:
 
   * `harmful_gpt_4.1`
   * `harmful_claude-sonnet-4`
-  * `harmful_Qwen3-235B-A22B-FP8`
+  * `harmful_Qwen3-235B-A22B-fp8-tpu`
 
 * **Columns**:
 
   * `source`, `id`, `base_prompt`, `jailbreak_turns`, `turn_type`, `num_turns`, `turn_1…turn_12`, `meta`, `extracted_base_prompt`, `extraction_confidence`, `extraction_error`
   * As previously detailed (structure, counts, distributions, etc.).
 
-### B. `similarity_*` sheets (LLM judge scores)
+### C. `similarity_*` sheets (LLM judge scores)
 
 * Contains one sheet per model:
 
   * `similarity_gpt-4.1`
-  * `similarity_claude-sonnet-4`
-  * `similarity_Qwen3-235B-A22B-FP8`
+  * `similarity_claude-sonnet-4-2025`
+  * `similarity_Qwen3-235B-A22B-fp8-`
 
 * **Columns**:
 
-  * `base_prompt`, `extracted_base_prompt`, `response` (JSON judgment), `similarity_score`, `similarity_category`, `reasoning`, `error`, `error_status_code`
+  * `source` (for gpt-4.1 only), `base_prompt`, `extracted_base_prompt`, `response` (JSON judgment), `similarity_score`, `similarity_category`, `reasoning`, `error`, `error_status_code`
 
 Detailed category distributions, coverage, and error counts align with the paper findings.
 
@@ -63,7 +76,7 @@ Detailed category distributions, coverage, and error counts align with the paper
 ```python
 import pandas as pd
 
-xls = pd.ExcelFile("ObjexMT_dataset.xlsx")
+xls = pd.ExcelFile("OBJEX_dataset.xlsx")
 harm = pd.read_excel(xls, "harmful_gpt_4.1")
 sim  = pd.read_excel(xls, "similarity_gpt-4.1")
 
