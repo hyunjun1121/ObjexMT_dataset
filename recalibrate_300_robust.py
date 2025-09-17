@@ -402,7 +402,11 @@ def generate_latex_updates(threshold: float, calibration: Dict, models: Dict) ->
     print(f"\n% Source distribution")
     src_dist = calibration['source_distribution']
     print(f"The realized source mix is ", end="")
-    parts = [f"\\emph{{{src.replace('_', '\\_')}: {cnt}}}" for src, cnt in src_dist.items()]
+    # Fix: avoid backslash in f-string
+    parts = []
+    for src, cnt in src_dist.items():
+        src_escaped = src.replace('_', '\\_')
+        parts.append(f"\\emph{{{src_escaped}: {cnt}}}")
     print(", ".join(parts) + ".")
 
     print(f"\n% Threshold and metrics")
