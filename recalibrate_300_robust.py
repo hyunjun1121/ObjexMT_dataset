@@ -433,8 +433,13 @@ def main():
     print("Production-ready code for NeurIPS 2025")
     print("="*60)
 
-    # Initialize
-    excel_path = "E:\\Project\\OBJEX_dataset\\OBJEX_dataset_labeling.xlsx"
+    # Initialize - use relative path for cross-platform compatibility
+    import os
+    excel_path = os.path.join(os.path.dirname(__file__), "OBJEX_dataset_labeling.xlsx")
+    if not os.path.exists(excel_path):
+        # Fallback to current directory
+        excel_path = "OBJEX_dataset_labeling.xlsx"
+
     recalibrator = RobustRecalibration(excel_path)
 
     # Load data
