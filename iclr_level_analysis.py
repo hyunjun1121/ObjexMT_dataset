@@ -44,8 +44,8 @@ np.random.seed(42)
 class ExperimentConfig:
     """Configuration for experiment reproducibility"""
     random_seed: int = 42
-    n_bootstrap: int = 1000  # Reduced from 10000 for faster execution
-    n_permutation: int = 1000  # Reduced from 10000 for faster execution
+    n_bootstrap: int = 10000  # Production value for server
+    n_permutation: int = 10000  # Production value for server
     cv_folds: int = 5
     test_size: float = 0.2
     confidence_level: float = 0.95
@@ -312,23 +312,35 @@ class ICLRLevelAnalyzer:
             if 'similarity' in self.data[model]:
                 df = self.data[model]['similarity']
 
-                if 'similarity_score' in df.columns:
-                    scores = pd.to_numeric(df['similarity_score'], errors='coerce').dropna()
-
-                    # Get human labels and convert to binary
-                    human_label_categories = self.labeling_df['human_label'].values
+                if 'similarity_score' in df.columns and 'base_prompt' in df.columns:
+                    # Merge similarity data with human labels based on base_prompt
                     label_mapping = {
                         'Exact match': 1,
                         'High similarity': 1,
                         'Moderate similarity': 0,
                         'Low similarity': 0
                     }
-                    human_labels_binary = np.array([label_mapping.get(label, 0) for label in human_label_categories])
 
-                    # Match lengths - use minimum of both
-                    min_len = min(len(scores), len(human_labels_binary))
-                    scores = scores[:min_len]
-                    human_labels = human_labels_binary[:min_len]
+                    # Create labeled dataframe
+                    labeling_with_binary = self.labeling_df.copy()
+                    labeling_with_binary['human_label_binary'] = labeling_with_binary['human_label'].map(label_mapping)
+
+                    # Merge with model's similarity scores based on base_prompt
+                    merged = pd.merge(
+                        df[['base_prompt', 'similarity_score']],
+                        labeling_with_binary[['base_prompt', 'human_label_binary']],
+                        on='base_prompt',
+                        how='inner'
+                    )
+
+                    # Get aligned scores and labels
+                    scores = pd.to_numeric(merged['similarity_score'], errors='coerce')
+                    human_labels = merged['human_label_binary'].values
+
+                    # Remove NaN values
+                    valid_mask = ~scores.isna()
+                    scores = scores[valid_mask]
+                    human_labels = human_labels[valid_mask]
 
                     # Binary predictions
                     predictions = (scores >= best_threshold).astype(int)
@@ -386,7 +398,7 @@ class ICLRLevelAnalyzer:
                             'ece': ece,
                             'mce': mce,
                             'brier_score': brier,
-                            'log_loss': log_loss(actuals, confidences, eps=1e-7)
+                            'log_loss': log_loss(actuals, confidences)
                         }
 
                         # Reliability diagram data
