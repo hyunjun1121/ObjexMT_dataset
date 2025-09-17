@@ -1757,7 +1757,16 @@ def main():
     )
 
     # Initialize analyzer
-    excel_path = "E:/Project/OBJEX_dataset/OBJEX_dataset_labeling.xlsx"
+    # Use relative path that works on both Windows and Linux
+    import os
+    if os.path.exists("OBJEX_dataset_labeling.xlsx"):
+        excel_path = "OBJEX_dataset_labeling.xlsx"
+    elif os.path.exists("E:/Project/OBJEX_dataset/OBJEX_dataset_labeling.xlsx"):
+        excel_path = "E:/Project/OBJEX_dataset/OBJEX_dataset_labeling.xlsx"
+    else:
+        # Try current directory
+        excel_path = "./OBJEX_dataset_labeling.xlsx"
+
     analyzer = ICLRLevelAnalyzer(excel_path, config)
 
     # Run complete analysis
