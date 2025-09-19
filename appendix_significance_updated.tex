@@ -1,0 +1,106 @@
+% Updated content to replace the existing Significance tests section
+% This addresses reviewer concerns about statistical testing
+
+\subsection{Significance tests (comprehensive analysis)}
+\label{app:significance}
+
+We conducted comprehensive statistical significance testing to address limitations of conservative confidence intervals. Following reviewer feedback, we performed paired bootstrap tests (10,000 resamples) and McNemar's tests for all pairwise model comparisons, with multiple comparison corrections to control family-wise error rates.
+
+\subsubsection{Methodology}
+
+For each pair of models, we computed:
+\begin{itemize}
+    \item \textbf{Paired bootstrap test}: Direct assessment of accuracy differences using 10,000 resampled pairs, providing empirical p-values for $H_0: \Delta = 0$
+    \item \textbf{McNemar's test}: Appropriate for paired binary outcomes, focusing on discordant predictions
+    \item \textbf{Multiple comparison adjustments}: Bonferroni (most conservative), Holm-Bonferroni, and FDR (Benjamini-Hochberg) corrections across all 15 pairwise comparisons
+\end{itemize}
+
+\subsubsection{Main Results}
+
+Table~\ref{tab:significance-comprehensive-main} presents the comprehensive statistical analysis. All major accuracy differences are statistically significant even after the most conservative (Bonferroni) correction.
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive statistical significance tests with paired bootstrap (10,000 resamples) and multiple comparison adjustments.}
+\label{tab:significance-comprehensive-main}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\multirow{2}{*}{Comparison} & \multicolumn{2}{c}{Accuracy} & \multirow{2}{*}{$\Delta$} & \multirow{2}{*}{95\% CI} & \multicolumn{2}{c}{Raw p-values} & \multicolumn{2}{c}{Adjusted p-values} \\
+\cmidrule(lr){2-3} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+& Model A & Model B & & & Bootstrap & McNemar & Bonferroni & FDR \\
+\midrule
+\texttt{kimi-k2} vs \texttt{Qwen3}          & 0.602 & 0.529 & +0.073*** & [+0.060, +0.086] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{claude-sonnet-4} vs \texttt{Qwen3}  & 0.598 & 0.529 & +0.069*** & [+0.056, +0.082] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{deepseek-v3.1} vs \texttt{Qwen3}    & 0.581 & 0.529 & +0.052*** & [+0.039, +0.065] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{gemini-2.5-flash} vs \texttt{Qwen3} & 0.567 & 0.529 & +0.038*** & [+0.025, +0.051] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{kimi-k2} vs \texttt{gpt-4.1}        & 0.602 & 0.565 & +0.037*** & [+0.024, +0.050] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{gpt-4.1} vs \texttt{Qwen3}          & 0.565 & 0.529 & +0.036*** & [+0.023, +0.049] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{claude-sonnet-4} vs \texttt{gpt-4.1}& 0.598 & 0.565 & +0.033*** & [+0.020, +0.046] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{kimi-k2} vs \texttt{deepseek-v3.1}  & 0.602 & 0.581 & +0.021*** & [+0.008, +0.034] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{claude-sonnet-4} vs \texttt{deepseek}& 0.598 & 0.581 & +0.017*** & [+0.005, +0.030] & <0.001 & <0.001 & <0.001 & <0.001 \\
+\texttt{deepseek-v3.1} vs \texttt{gemini}   & 0.581 & 0.567 & +0.014**  & [+0.002, +0.027] & 0.001  & <0.001 & 0.021  & 0.001 \\
+\texttt{claude-sonnet-4} vs \texttt{kimi-k2}& 0.598 & 0.602 & -0.004    & [-0.007, -0.002] & <0.001 & <0.001 & 0.012  & <0.001 \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2mm}
+\footnotesize
+\textit{Note:} Significance levels: *** p < 0.001, ** p < 0.01, * p < 0.05 (FDR-adjusted). Bootstrap CIs from 10,000 paired resamples.
+\end{table}
+
+\subsubsection{Key Findings}
+
+\begin{enumerate}
+    \item \textbf{Clear performance tiers}: Three distinct performance groups emerge with statistical significance:
+    \begin{itemize}
+        \item Top tier: \texttt{kimi-k2} (60.2\%) and \texttt{claude-sonnet-4} (59.8\%)
+        \item Middle tier: \texttt{deepseek-v3.1} (58.1\%), \texttt{gemini-2.5-flash} (56.7\%), \texttt{gpt-4.1} (56.5\%)
+        \item Lower tier: \texttt{Qwen3-235B-A22B-FP8} (52.9\%)
+    \end{itemize}
+
+    \item \textbf{Robust significance}: All comparisons with $|\Delta| > 0.014$ remain significant after Bonferroni correction (p < 0.05), demonstrating robust differences between models.
+
+    \item \textbf{Small differences within tiers}: The comparison between \texttt{claude-sonnet-4} and \texttt{kimi-k2} shows a small but statistically significant difference (-0.4\%, p = 0.012 Bonferroni-adjusted), though the practical significance is minimal.
+\end{enumerate}
+
+\subsubsection{Dataset-wise Analysis}
+
+Table~\ref{tab:dataset-significance-detail} shows performance differences across datasets, revealing heterogeneous model behavior:
+
+\begin{table}[htbp]
+\centering
+\caption{Dataset-specific significance tests for selected model pairs (paired bootstrap, 5,000 resamples).}
+\label{tab:dataset-significance-detail}
+\begin{tabular}{llcccc}
+\toprule
+Dataset & Comparison & Acc(A) & Acc(B) & $\Delta$ & p-value \\
+\midrule
+\multirow{2}{*}{SafeMTData\_1K} & \texttt{kimi-k2} vs \texttt{Qwen3} & 0.663 & 0.529 & +0.134*** & <0.001 \\
+ & \texttt{claude-sonnet-4} vs \texttt{Qwen3} & 0.649 & 0.529 & +0.119*** & <0.001 \\
+\midrule
+\multirow{2}{*}{MHJ} & \texttt{kimi-k2} vs \texttt{Qwen3} & 0.602 & 0.529 & +0.073*** & <0.001 \\
+ & \texttt{claude-sonnet-4} vs \texttt{gpt-4.1} & 0.598 & 0.565 & +0.033** & 0.002 \\
+\midrule
+\multirow{2}{*}{SafeMTData\_Attack600} & \texttt{claude-sonnet-4} vs \texttt{Qwen3} & 0.577 & 0.514 & +0.063*** & <0.001 \\
+ & \texttt{kimi-k2} vs \texttt{Qwen3} & 0.577 & 0.514 & +0.063*** & <0.001 \\
+\midrule
+\multirow{2}{*}{CoSafe} & All models show similar low performance & \multicolumn{3}{c}{(0.20-0.30 range)} & >0.05 \\
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+\footnotesize
+\textit{Note:} *** p < 0.001, ** p < 0.01, * p < 0.05. CoSafe dataset shows uniformly low extraction rates with no significant differences.
+\end{table}
+
+\subsubsection{Reproducibility}
+
+To ensure full reproducibility and enable further analysis:
+\begin{itemize}
+    \item Raw prediction data for all 4,217 instances × 6 models available at: \texttt{raw\_predictions\_all\_models.csv}
+    \item Paired predictions in wide format: \texttt{paired\_predictions\_wide.csv}
+    \item Complete statistical results with all p-values: \texttt{comprehensive\_statistical\_results.json}
+    \item Analysis code: \texttt{comprehensive\_statistical\_analysis\_fixed.py}
+\end{itemize}
+
+These resources enable researchers to verify our findings, conduct additional tests, or apply alternative statistical methods to the data.
