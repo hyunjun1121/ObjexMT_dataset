@@ -48,20 +48,19 @@ def load_full_data():
         df_sim = pd.read_excel(xl, sim_sheet)
         df_ext = pd.read_excel(xl, ext_sheet)
 
-        # Get similarity scores
+        # Simply use all rows from similarity sheet without merging
+        # This ensures we have exactly 4,217 rows per model
         df = df_sim[['base_prompt', 'similarity_score']].copy()
         df.rename(columns={'similarity_score': 'similarity'}, inplace=True)
 
-        # Add source information
+        # Get source from extraction sheet using the row index
+        # Since both sheets have same 4,217 rows in same order
         if 'source' in df_ext.columns:
-            df_source = df_ext[['base_prompt', 'source']].drop_duplicates()
-            df = pd.merge(df, df_source, on='base_prompt', how='left')
+            df['source'] = df_ext['source'].values
 
         # Add confidence if available
         if 'extraction_confidence' in df_ext.columns:
-            df_conf = df_ext[['base_prompt', 'extraction_confidence']].drop_duplicates()
-            df = pd.merge(df, df_conf, on='base_prompt', how='left')
-            df.rename(columns={'extraction_confidence': 'confidence'}, inplace=True)
+            df['confidence'] = df_ext['extraction_confidence'].values
 
         # Apply threshold τ* = 0.66 to get predictions
         df['predicted'] = (df['similarity'] >= 0.66).astype(int)
