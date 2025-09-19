@@ -1,0 +1,66 @@
+% Main comprehensive significance table
+
+\begin{table}[htbp]
+\centering
+\caption{Comprehensive statistical significance tests for model comparisons. P-values from paired bootstrap (10,000 resamples) and McNemar's test, with multiple comparison adjustments.}
+\label{tab:significance-comprehensive}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\multirow{2}{*}{Comparison} & \multicolumn{2}{c}{Accuracy} & \multirow{2}{*}{$\Delta$} & \multicolumn{2}{c}{Raw p-values} & \multicolumn{3}{c}{Adjusted p-values} \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6} \cmidrule(lr){7-9}
+& Model A & Model B & & Bootstrap & McNemar & Bonferroni & Holm & FDR \\
+\midrule
+Kimi vs Qwen & 0.602 & 0.529 & +0.073*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Claude-4 vs Qwen & 0.598 & 0.529 & +0.069*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+DeepSeek vs Qwen & 0.581 & 0.529 & +0.052*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Gemini vs Qwen & 0.567 & 0.529 & +0.038*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Kimi vs GPT-4.1 & 0.602 & 0.565 & +0.037*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+GPT-4.1 vs Qwen & 0.565 & 0.529 & +0.036*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Kimi vs Gemini & 0.602 & 0.567 & +0.034*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Claude-4 vs GPT-4.1 & 0.598 & 0.565 & +0.033*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Claude-4 vs Gemini & 0.598 & 0.567 & +0.031*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Kimi vs DeepSeek & 0.602 & 0.581 & +0.021*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Claude-4 vs DeepSeek & 0.598 & 0.581 & +0.017*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+DeepSeek vs GPT-4.1 & 0.581 & 0.565 & +0.017*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+DeepSeek vs Gemini & 0.581 & 0.567 & +0.014** & 0.0014 & 0.0009 & 0.0210 & 0.0016 & 0.0014 \\
+Claude-4 vs Kimi & 0.598 & 0.602 & -0.004*** & 0.0008 & 0.0005 & 0.0120 & 0.0016 & 0.0009 \\
+Gemini vs GPT-4.1 & 0.567 & 0.565 & +0.003*** & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+
+\bottomrule
+\end{tabular}
+}
+\vspace{2mm}
+\footnotesize
+\textit{Note:} $\Delta$ = Accuracy(Model A) - Accuracy(Model B). Significance: *** p < 0.001, ** p < 0.01, * p < 0.05 (FDR-adjusted).
+Bootstrap test uses 10,000 paired resamples. McNemar's test uses exact calculation when n < 25.
+Multiple comparison adjustments: Bonferroni (most conservative), Holm-Bonferroni, and FDR (Benjamini-Hochberg).
+\end{table}
+
+
+% Dataset-wise significance table
+
+\begin{table}[htbp]
+\centering
+\caption{Dataset-wise significance tests for top model pairs (paired bootstrap, 5,000 resamples).}
+\label{tab:dataset-significance}
+\begin{tabular}{llcccc}
+\toprule
+Dataset & Comparison & Acc(A) & Acc(B) & $\Delta$ & p-value \\
+\midrule
+\midrule
+\multirow{3}{*}{SafeMTData_1K} & Kimi vs Qwen & 0.663 & 0.529 & +0.134* & 0.0000 \\
+ & Claude vs Qwen & 0.649 & 0.529 & +0.119* & 0.0000 \\
+ & DeepSeek vs Qwen & 0.634 & 0.529 & +0.105* & 0.0000 \\
+\midrule
+\multirow{3}{*}{SafeMTData_Attack600} & Claude vs Qwen & 0.577 & 0.514 & +0.063* & 0.0000 \\
+ & Kimi vs Qwen & 0.577 & 0.514 & +0.063* & 0.0000 \\
+ & Claude vs GPT-4.1 & 0.577 & 0.528 & +0.049* & 0.0000 \\
+\midrule
+
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+\footnotesize
+\textit{Note:} Shows top 3 comparisons per dataset by absolute delta. * indicates p < 0.05.
+\end{table}

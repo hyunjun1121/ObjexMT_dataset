@@ -1,0 +1,672 @@
+{
+  "pairwise_comparisons": [
+    {
+      "model1": "claude-sonnet-4",
+      "model2": "kimi-k2",
+      "acc1": 0.5979760809567617,
+      "acc2": 0.6018859245630175,
+      "delta": -0.003909843606255792,
+      "bootstrap_p": 0.0008,
+      "bootstrap_ci": [
+        -0.007139012648386789,
+        -0.002063118589839401
+      ],
+      "mcnemar_p": 0.0004691282879842628,
+      "mcnemar_stat": 12.234543160394864,
+      "bootstrap_p_bonf": 0.012,
+      "bootstrap_p_holm": 0.0016,
+      "bootstrap_p_fdr": 0.0008571428571428572,
+      "mcnemar_p_bonf": 0.007036924319763943,
+      "mcnemar_p_holm": 0.0009382565759685256,
+      "mcnemar_p_fdr": 0.0005026374514117101
+    },
+    {
+      "model1": "claude-sonnet-4",
+      "model2": "deepseek-v3.1",
+      "acc1": 0.5979760809567617,
+      "acc2": 0.5811867525298988,
+      "delta": 0.01678932842686287,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.004526358281254694,
+        0.009583470382441676
+      ],
+      "mcnemar_p": 5.534869735509435e-08,
+      "mcnemar_stat": 29.519788655994567,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 8.302304603264152e-07,
+      "mcnemar_p_holm": 1.6604609206528305e-07,
+      "mcnemar_p_fdr": 6.386388156357041e-08
+    },
+    {
+      "model1": "claude-sonnet-4",
+      "model2": "gemini-2.5-flash",
+      "acc1": 0.5979760809567617,
+      "acc2": 0.5673873045078197,
+      "delta": 0.03058877644894198,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.00880602816732945,
+        0.013979102502765935
+      ],
+      "mcnemar_p": 5.3971056665386775e-18,
+      "mcnemar_stat": 74.72995225684066,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 8.095658499808016e-17,
+      "mcnemar_p_holm": 2.6985528332693388e-17,
+      "mcnemar_p_fdr": 7.359689545280016e-18
+    },
+    {
+      "model1": "claude-sonnet-4",
+      "model2": "gpt-4.1",
+      "acc1": 0.5979760809567617,
+      "acc2": 0.5646274149034038,
+      "delta": 0.033348666053357845,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.037384504978620337,
+        0.04259495634362945
+      ],
+      "mcnemar_p": 4.242241292957867e-201,
+      "mcnemar_stat": 915.4758185328494,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 6.363361939436801e-200,
+      "mcnemar_p_holm": 4.666465422253654e-200,
+      "mcnemar_p_fdr": 1.2726723878873601e-200
+    },
+    {
+      "model1": "claude-sonnet-4",
+      "model2": "Qwen3-235B-A22B-FP8",
+      "acc1": 0.5979760809567617,
+      "acc2": 0.5289788408463661,
+      "delta": 0.06899724011039554,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.04773420446730259,
+        0.05304921807254137
+      ],
+      "mcnemar_p": 3.2270215803480276e-308,
+      "mcnemar_stat": 1408.3461264497746,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 4.840532370522041e-307,
+      "mcnemar_p_holm": 4.517830212487239e-307,
+      "mcnemar_p_fdr": 2.420266185261021e-307
+    },
+    {
+      "model1": "kimi-k2",
+      "model2": "deepseek-v3.1",
+      "acc1": 0.6018859245630175,
+      "acc2": 0.5811867525298988,
+      "delta": 0.020699172033118662,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.00910130670095377,
+        0.01411356636665373
+      ],
+      "mcnemar_p": 3.029299503115313e-19,
+      "mcnemar_stat": 80.41860213262245,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 4.54394925467297e-18,
+      "mcnemar_p_holm": 1.8175797018691877e-18,
+      "mcnemar_p_fdr": 4.54394925467297e-19
+    },
+    {
+      "model1": "kimi-k2",
+      "model2": "gemini-2.5-flash",
+      "acc1": 0.6018859245630175,
+      "acc2": 0.5673873045078197,
+      "delta": 0.03449862005519777,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.013407047065155686,
+        0.018576383697634813
+      ],
+      "mcnemar_p": 1.119046516653286e-33,
+      "mcnemar_stat": 146.29500933952775,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 1.678569774979929e-32,
+      "mcnemar_p_holm": 7.833325616573003e-33,
+      "mcnemar_p_fdr": 1.865077527755477e-33
+    },
+    {
+      "model1": "kimi-k2",
+      "model2": "gpt-4.1",
+      "acc1": 0.6018859245630175,
+      "acc2": 0.5646274149034038,
+      "delta": 0.03725850965961364,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.04188843704213141,
+        0.047087675298268766
+      ],
+      "mcnemar_p": 2.5744526977778657e-246,
+      "mcnemar_stat": 1123.5030261260833,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 3.8616790466667986e-245,
+      "mcnemar_p_holm": 3.3467885071112253e-245,
+      "mcnemar_p_fdr": 1.2872263488889327e-245
+    },
+    {
+      "model1": "kimi-k2",
+      "model2": "Qwen3-235B-A22B-FP8",
+      "acc1": 0.6018859245630175,
+      "acc2": 0.5289788408463661,
+      "delta": 0.07290708371665133,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.052301490595939304,
+        0.05761304682594273
+      ],
+      "mcnemar_p": 0.0,
+      "mcnemar_stat": 1666.8061873309236,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 0.0,
+      "mcnemar_p_holm": 0.0,
+      "mcnemar_p_fdr": 0.0
+    },
+    {
+      "model1": "deepseek-v3.1",
+      "model2": "gemini-2.5-flash",
+      "acc1": 0.5811867525298988,
+      "acc2": 0.5673873045078197,
+      "delta": 0.013799448022079108,
+      "bootstrap_p": 0.0014,
+      "bootstrap_ci": [
+        0.0018127859342761399,
+        0.00695222094309725
+      ],
+      "mcnemar_p": 0.000889486908210336,
+      "mcnemar_stat": 11.044541659977524,
+      "bootstrap_p_bonf": 0.021,
+      "bootstrap_p_holm": 0.0016,
+      "bootstrap_p_fdr": 0.0014,
+      "mcnemar_p_bonf": 0.013342303623155041,
+      "mcnemar_p_holm": 0.0009382565759685256,
+      "mcnemar_p_fdr": 0.000889486908210336
+    },
+    {
+      "model1": "deepseek-v3.1",
+      "model2": "gpt-4.1",
+      "acc1": 0.5811867525298988,
+      "acc2": 0.5646274149034038,
+      "delta": 0.016559337626494974,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.03033884146159135,
+        0.03549715187034658
+      ],
+      "mcnemar_p": 3.3427758923394467e-139,
+      "mcnemar_stat": 630.8033178057202,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 5.01416383850917e-138,
+      "mcnemar_p_holm": 3.008498303105502e-138,
+      "mcnemar_p_fdr": 7.163091197870243e-139
+    },
+    {
+      "model1": "deepseek-v3.1",
+      "model2": "Qwen3-235B-A22B-FP8",
+      "acc1": 0.5811867525298988,
+      "acc2": 0.5289788408463661,
+      "delta": 0.05220791168353267,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.04072601142242027,
+        0.04595515130221575
+      ],
+      "mcnemar_p": 1.7730759442854532e-230,
+      "mcnemar_stat": 1050.6330810506831,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 2.65961391642818e-229,
+      "mcnemar_p_holm": 2.127691133142544e-229,
+      "mcnemar_p_fdr": 6.64903479107045e-230
+    },
+    {
+      "model1": "gemini-2.5-flash",
+      "model2": "gpt-4.1",
+      "acc1": 0.5673873045078197,
+      "acc2": 0.5646274149034038,
+      "delta": 0.002759889604415866,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.025872192985079083,
+        0.03111637711927751
+      ],
+      "mcnemar_p": 1.0329178938232746e-101,
+      "mcnemar_stat": 458.4735892181589,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 1.549376840734912e-100,
+      "mcnemar_p_holm": 8.263343150586197e-101,
+      "mcnemar_p_fdr": 1.93672105091864e-101
+    },
+    {
+      "model1": "gemini-2.5-flash",
+      "model2": "Qwen3-235B-A22B-FP8",
+      "acc1": 0.5673873045078197,
+      "acc2": 0.5289788408463661,
+      "delta": 0.03840846366145356,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.03635644978022306,
+        0.0415595191818916
+      ],
+      "mcnemar_p": 6.062697230297947e-188,
+      "mcnemar_stat": 854.9627123445036,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 9.09404584544692e-187,
+      "mcnemar_p_holm": 6.062697230297947e-187,
+      "mcnemar_p_fdr": 1.5156743075744866e-187
+    },
+    {
+      "model1": "gpt-4.1",
+      "model2": "Qwen3-235B-A22B-FP8",
+      "acc1": 0.5646274149034038,
+      "acc2": 0.5289788408463661,
+      "delta": 0.035648574057037696,
+      "bootstrap_p": 0.0,
+      "bootstrap_ci": [
+        0.007837869658822461,
+        0.013037201357533749
+      ],
+      "mcnemar_p": 1.787070107447541e-15,
+      "mcnemar_stat": 63.28669845458887,
+      "bootstrap_p_bonf": 0.0,
+      "bootstrap_p_holm": 0.0,
+      "bootstrap_p_fdr": 0.0,
+      "mcnemar_p_bonf": 2.680605161171312e-14,
+      "mcnemar_p_holm": 7.148280429790165e-15,
+      "mcnemar_p_fdr": 2.2338376343094265e-15
+    }
+  ],
+  "dataset_comparisons": {
+    "SafeMTData_1K": [
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "claude-sonnet-4 vs kimi-k2",
+        "acc1": 0.6487549148099607,
+        "acc2": 0.6631716906946264,
+        "delta": -0.014416775884665722,
+        "p_value": 0.0216,
+        "ci": [
+          -0.03143933191419679,
+          -0.002292451285410113
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "claude-sonnet-4 vs deepseek-v3.1",
+        "acc1": 0.6487549148099607,
+        "acc2": 0.6343381389252949,
+        "delta": 0.014416775884665833,
+        "p_value": 0.6144,
+        "ci": [
+          -0.010971016865891636,
+          0.01850745046667759
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "claude-sonnet-4 vs gemini-2.5-flash",
+        "acc1": 0.6487549148099607,
+        "acc2": 0.5792922673656619,
+        "delta": 0.06946264744429886,
+        "p_value": 0.0,
+        "ci": [
+          0.043884067463566434,
+          0.07565089241853606
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "claude-sonnet-4 vs gpt-4.1",
+        "acc1": 0.6487549148099607,
+        "acc2": 0.5871559633027523,
+        "delta": 0.0615989515072084,
+        "p_value": 0.0,
+        "ci": [
+          0.03323644997543798,
+          0.06435238251187159
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "claude-sonnet-4 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.6487549148099607,
+        "acc2": 0.5294888597640891,
+        "delta": 0.11926605504587162,
+        "p_value": 0.0,
+        "ci": [
+          0.09513263468151292,
+          0.12706729981987885
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "kimi-k2 vs deepseek-v3.1",
+        "acc1": 0.6631716906946264,
+        "acc2": 0.6343381389252949,
+        "delta": 0.028833551769331556,
+        "p_value": 0.0068,
+        "ci": [
+          0.005403635172752552,
+          0.035696741444244395
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "kimi-k2 vs gemini-2.5-flash",
+        "acc1": 0.6631716906946264,
+        "acc2": 0.5792922673656619,
+        "delta": 0.08387942332896459,
+        "p_value": 0.0,
+        "ci": [
+          0.060749959063369885,
+          0.09268053053872605
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "kimi-k2 vs gpt-4.1",
+        "acc1": 0.6631716906946264,
+        "acc2": 0.5871559633027523,
+        "delta": 0.07601572739187412,
+        "p_value": 0.0,
+        "ci": [
+          0.04977894219747836,
+          0.08170951367283441
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "kimi-k2 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.6631716906946264,
+        "acc2": 0.5294888597640891,
+        "delta": 0.13368283093053734,
+        "p_value": 0.0,
+        "ci": [
+          0.11200261994432625,
+          0.14376944489929588
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "deepseek-v3.1 vs gemini-2.5-flash",
+        "acc1": 0.6343381389252949,
+        "acc2": 0.5792922673656619,
+        "delta": 0.05504587155963303,
+        "p_value": 0.0,
+        "ci": [
+          0.0401178974946782,
+          0.07172097592926152
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "deepseek-v3.1 vs gpt-4.1",
+        "acc1": 0.6343381389252949,
+        "acc2": 0.5871559633027523,
+        "delta": 0.047182175622542566,
+        "p_value": 0.0,
+        "ci": [
+          0.029638120189945938,
+          0.06107745210414284
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "deepseek-v3.1 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.6343381389252949,
+        "acc2": 0.5294888597640891,
+        "delta": 0.10484927916120579,
+        "p_value": 0.0,
+        "ci": [
+          0.09137055837563457,
+          0.12346487637137704
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "gemini-2.5-flash vs gpt-4.1",
+        "acc1": 0.5792922673656619,
+        "acc2": 0.5871559633027523,
+        "delta": -0.007863695937090465,
+        "p_value": 0.1548,
+        "ci": [
+          -0.025871950221057816,
+          0.004257409530047496
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "gemini-2.5-flash vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5792922673656619,
+        "acc2": 0.5294888597640891,
+        "delta": 0.04980340760157276,
+        "p_value": 0.0,
+        "ci": [
+          0.0365154740461765,
+          0.06648108727689539
+        ]
+      },
+      {
+        "dataset": "SafeMTData_1K",
+        "models": "gpt-4.1 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5871559633027523,
+        "acc2": 0.5294888597640891,
+        "delta": 0.05766710353866322,
+        "p_value": 0.0,
+        "ci": [
+          0.047322744391681715,
+          0.0772883576224005
+        ]
+      }
+    ],
+    "MHJ": [],
+    "SafeMTData_Attack600": [
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "claude-sonnet-4 vs kimi-k2",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5768500948766604,
+        "delta": 0.0,
+        "p_value": 0.776,
+        "ci": [
+          -0.006806441810999764,
+          0.005044059556365779
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "claude-sonnet-4 vs deepseek-v3.1",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5483870967741935,
+        "delta": 0.028462998102466885,
+        "p_value": 0.0,
+        "ci": [
+          0.010776359769067106,
+          0.022607616732502767
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "claude-sonnet-4 vs gemini-2.5-flash",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5426944971537002,
+        "delta": 0.034155597722960174,
+        "p_value": 0.0,
+        "ci": [
+          0.014118808872683023,
+          0.026375468449306258
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "claude-sonnet-4 vs gpt-4.1",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5275142314990512,
+        "delta": 0.0493358633776092,
+        "p_value": 0.0,
+        "ci": [
+          0.05011647928694418,
+          0.06223032512914006
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "claude-sonnet-4 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5142314990512334,
+        "delta": 0.06261859582542695,
+        "p_value": 0.0,
+        "ci": [
+          0.043998784563962334,
+          0.0562346804416085
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "kimi-k2 vs deepseek-v3.1",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5483870967741935,
+        "delta": 0.028462998102466885,
+        "p_value": 0.0,
+        "ci": [
+          0.011627671427124397,
+          0.023356629190722122
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "kimi-k2 vs gemini-2.5-flash",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5426944971537002,
+        "delta": 0.034155597722960174,
+        "p_value": 0.0,
+        "ci": [
+          0.01490934872885652,
+          0.027226273675681083
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "kimi-k2 vs gpt-4.1",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5275142314990512,
+        "delta": 0.0493358633776092,
+        "p_value": 0.0,
+        "ci": [
+          0.050906512711435314,
+          0.06310189405449206
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "kimi-k2 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5768500948766604,
+        "acc2": 0.5142314990512334,
+        "delta": 0.06261859582542695,
+        "p_value": 0.0,
+        "ci": [
+          0.04495036969512822,
+          0.05714625746986734
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "deepseek-v3.1 vs gemini-2.5-flash",
+        "acc1": 0.5483870967741935,
+        "acc2": 0.5426944971537002,
+        "delta": 0.005692599620493288,
+        "p_value": 0.2332,
+        "ci": [
+          -0.0025524156791248975,
+          0.00966322293122656
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "deepseek-v3.1 vs gpt-4.1",
+        "acc1": 0.5483870967741935,
+        "acc2": 0.5275142314990512,
+        "delta": 0.020872865275142316,
+        "p_value": 0.0,
+        "ci": [
+          0.033789121847462744,
+          0.04557935784462668
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "deepseek-v3.1 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5483870967741935,
+        "acc2": 0.5142314990512334,
+        "delta": 0.03415559772296006,
+        "p_value": 0.0,
+        "ci": [
+          0.02740757621796819,
+          0.03974526486376983
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "gemini-2.5-flash vs gpt-4.1",
+        "acc1": 0.5426944971537002,
+        "acc2": 0.5275142314990512,
+        "delta": 0.015180265654649028,
+        "p_value": 0.0,
+        "ci": [
+          0.029858199128937505,
+          0.042095107869948405
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "gemini-2.5-flash vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5426944971537002,
+        "acc2": 0.5142314990512334,
+        "delta": 0.028462998102466774,
+        "p_value": 0.0,
+        "ci": [
+          0.023761268104932624,
+          0.03599767041426115
+        ]
+      },
+      {
+        "dataset": "SafeMTData_Attack600",
+        "models": "gpt-4.1 vs Qwen3-235B-A22B-FP8",
+        "acc1": 0.5275142314990512,
+        "acc2": 0.5142314990512334,
+        "delta": 0.013282732447817747,
+        "p_value": 0.05,
+        "ci": [
+          -0.012276410412235424,
+          -1.9750835612241265e-05
+        ]
+      }
+    ],
+    "CoSafe": []
+  }
+}
