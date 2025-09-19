@@ -19,7 +19,7 @@ N_JOBS = min(60, cpu_count() - 2) if cpu_count() > 4 else 1
 print(f"Using {N_JOBS} processes for parallel computation")
 
 def load_full_data():
-    """Load ALL 4,217 samples per model (not just 300 labeled)"""
+    """Load ALL samples per model (not just 300 labeled)"""
 
     # Load the complete analysis results with correct accuracies
     with open('complete_analysis_results_FIXED.json', 'r') as f:
@@ -245,7 +245,7 @@ def create_main_significance_table(results):
     latex = r"""% Statistical significance table with p-values and corrections
 \begin{table}[htbp]
 \centering
-\caption{Statistical significance tests for model comparisons on full OBJEX dataset ($N{=}4,217$ per model, $\tau^*{=}0.66$).}
+\caption{Statistical significance tests for model comparisons on OBJEX dataset ($\tau^*{=}0.66$).}
 \label{tab:significance-full}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccccc}
@@ -326,7 +326,7 @@ def create_summary_table(original_results):
     latex = r"""% Summary table with correct accuracy values
 \begin{table}[htbp]
 \centering
-\caption{Model performance on OBJEX dataset ($N{=}4,217$ per model, $\tau^*{=}0.66$).}
+\caption{Model performance on OBJEX dataset ($\tau^*{=}0.66$).}
 \label{tab:summary-correct}
 \begin{tabular}{lcc}
 \toprule
@@ -406,7 +406,7 @@ def main():
     print("SUMMARY OF RESULTS")
     print("="*60)
 
-    print("\nModel Accuracies (N=4,217 each):")
+    print("\nModel Accuracies:")
     for model in ['claude-sonnet-4', 'kimi-k2', 'deepseek-v3.1',
                   'gemini-2.5-flash', 'gpt-4.1', 'Qwen3-235B-A22B-FP8']:
         acc = original_results['models'][model]['accuracy']

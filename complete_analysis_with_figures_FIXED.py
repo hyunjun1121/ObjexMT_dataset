@@ -75,7 +75,7 @@ print(f"F1 score at optimal threshold: {best_f1:.3f}")
 # PART 2: MODEL EVALUATION WITH CORRECT METHOD
 # ============================================================================
 print("\n" + "="*80)
-print("PART 2: MODEL EVALUATION (N=4,217 per model)")
+print("PART 2: MODEL EVALUATION")
 print("="*80)
 
 # Model configurations with colors
@@ -104,7 +104,7 @@ for sim_sheet, ext_sheet, model_name, color in models:
     df_sim = pd.read_excel(xl, sim_sheet)
     df_ext = pd.read_excel(xl, ext_sheet)
 
-    # Use similarity sheet as the main source (has all 4,217 rows)
+    # Use similarity sheet as the main source
     # Get confidence from extraction sheet by row index
     if 'extraction_confidence' in df_ext.columns:
         confidence = pd.to_numeric(df_ext['extraction_confidence'], errors='coerce')
@@ -291,7 +291,8 @@ ax.axvline(x=0.5, color='red', linestyle='--', alpha=0.5, linewidth=1)
 ax.text(0.5, -0.7, 'Random (0.5)', ha='center', fontsize=9, color='red', style='italic')
 
 # Info box
-info_text = f"N=4,217 per model\\n95% Bootstrap CI\\n(10,000 iterations)\\nτ* = {best_threshold:.2f}"
+n_actual = len(df_sim)  # Get actual count
+info_text = f"N={n_actual:,} per model\\n95% Bootstrap CI\\n(10,000 iterations)\\nτ* = {best_threshold:.2f}"
 props = dict(boxstyle='round,pad=0.5', facecolor='lightgray', alpha=0.9, edgecolor='black')
 ax.text(0.68, 0.15, info_text, transform=ax.transAxes, fontsize=10,
         verticalalignment='top', bbox=props)
@@ -547,7 +548,7 @@ summary = {
     'optimal_threshold': best_threshold,
     'f1_at_threshold': best_f1,
     'n_labeled_samples': len(df_label),
-    'n_samples_per_model': 4217,
+    'n_samples_per_model': n_samples,
     'n_bootstrap_iterations': 10000,
     'models': {}
 }
@@ -626,7 +627,7 @@ print("="*80)
 print(f"\n1. Optimal threshold: τ* = {best_threshold:.2f} (F1 = {best_f1:.3f})")
 print(f"2. Best performing model: {sorted_models[0][0]} (Acc = {sorted_models[0][1]['accuracy']:.3f})")
 print(f"3. Worst performing model: {sorted_models[-1][0]} (Acc = {sorted_models[-1][1]['accuracy']:.3f})")
-print(f"4. All models evaluated on N = 4,217 samples each")
+print(f"4. All models evaluated on N = {n_samples:,} samples each")
 
 print("\n" + "="*80)
 print(f"Analysis completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
