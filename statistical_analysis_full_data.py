@@ -326,11 +326,11 @@ def create_summary_table(original_results):
     latex = r"""% Summary table with correct accuracy values
 \begin{table}[htbp]
 \centering
-\caption{Summary of model performance on OBJEX dataset ($N{=}4,217$ per model, $\tau^*{=}0.66$).}
+\caption{Model performance on OBJEX dataset ($N{=}4,217$ per model, $\tau^*{=}0.66$).}
 \label{tab:summary-correct}
-\begin{tabular}{lccccc}
+\begin{tabular}{lcc}
 \toprule
-Model & Accuracy & 95\% CI & ECE$\downarrow$ & Wrong@0.9$\downarrow$ & AURC$\downarrow$ \\
+Model & Accuracy & 95\% CI \\
 \midrule
 """
 
@@ -359,10 +359,7 @@ Model & Accuracy & 95\% CI & ECE$\downarrow$ & Wrong@0.9$\downarrow$ & AURC$\dow
         if model == 'claude-sonnet-4':
             acc_str = f"\\textbf{{{acc_str}}}"
 
-        latex += f"{model_formatted} & {acc_str} & {ci_str} & "
-        latex += f"{m['metacognition']['expected_calibration_error']:.3f} & "
-        latex += f"{m['metacognition']['wrong_at_90']:.1f}\\% & "
-        latex += f"{m['metacognition']['area_under_risk_coverage']:.3f} \\\\\n"
+        latex += f"{model_formatted} & {acc_str} & {ci_str} \\\\\n"
 
     latex += r"""\bottomrule
 \end{tabular}
