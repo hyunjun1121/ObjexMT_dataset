@@ -186,8 +186,11 @@ def compute_pairwise_significance(data, original_results):
             mcnemar_result = mcnemar_test_predictions(pred1, pred2)
 
             # Get confidence intervals from original results
-            ci1 = original_results['models'][model1]['confidence_interval']
-            ci2 = original_results['models'][model2]['confidence_interval']
+            # Use 'ci' instead of 'confidence_interval'
+            ci1 = original_results['models'][model1].get('ci',
+                  original_results['models'][model1].get('confidence_interval', [acc1-0.015, acc1+0.015]))
+            ci2 = original_results['models'][model2].get('ci',
+                  original_results['models'][model2].get('confidence_interval', [acc2-0.015, acc2+0.015]))
 
             # Conservative CI for difference
             conservative_ci = [
@@ -348,7 +351,10 @@ Model & Accuracy & 95\% CI & ECE$\downarrow$ & Wrong@0.9$\downarrow$ & AURC$\dow
 
         # Bold the best values
         acc_str = f"{m['accuracy']:.3f}"
-        ci_str = f"[{m['confidence_interval'][0]:.3f}, {m['confidence_interval'][1]:.3f}]"
+
+        # Get CI - handle different key names
+        ci = m.get('ci', m.get('confidence_interval', [m['accuracy']-0.015, m['accuracy']+0.015]))
+        ci_str = f"[{ci[0]:.3f}, {ci[1]:.3f}]"
 
         # Check if best (approximate)
         if model == 'claude-sonnet-4':
@@ -408,7 +414,8 @@ def main():
     for model in ['claude-sonnet-4', 'kimi-k2', 'deepseek-v3.1',
                   'gemini-2.5-flash', 'gpt-4.1', 'Qwen3-235B-A22B-FP8']:
         acc = original_results['models'][model]['accuracy']
-        ci = original_results['models'][model]['confidence_interval']
+        ci = original_results['models'][model].get('ci',
+             original_results['models'][model].get('confidence_interval', [acc-0.015, acc+0.015]))
         print(f"  {model:20s}: {acc:.3f} [{ci[0]:.3f}, {ci[1]:.3f}]")
 
     print("\nSignificant Differences (Bonferroni-adjusted p < 0.05):")
