@@ -1,55 +1,81 @@
-# ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks
+# OBJEX Dataset: Multi-Model Jailbreak Extraction Evaluation
 
-This repository accompanies the preprint:
+This repository contains the OBJEX dataset used in ICLR 2026 submission.
 
-- Paper: ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks
-- Authors: Hyunjun Kim, Junwoo Ha, Sangyoon Yu, Haon Park
-- arXiv: https://arxiv.org/abs/2508.16889v2 (DOI: 10.48550/arXiv.2508.16889)
+## Dataset Overview
 
-## Abstract (brief)
+`OBJEX_dataset.xlsx` contains comprehensive evaluation data for jailbreak extraction across 6 state-of-the-art language models.
 
-LLM-as-a-Judge (LLMaaJ) is increasingly used for scalable evaluation, yet a decisive test of a judge's qualification is missing: can it recover a conversation's latent objective and know when that inference is trustworthy? ObjexMT introduces a benchmark for objective extraction and metacognition under multi-turn jailbreaks. Given a multi-turn transcript, a model must output a one-sentence base objective and a self-reported confidence. Accuracy is computed via LLM-judge semantic similarity to gold objectives, binarized by a single human-aligned threshold calibrated once on N = 100 items (τ* = 0.61). Metacognition is evaluated with ECE, Brier score, Wrong-at-High-Confidence, and risk-coverage.
+### Key Statistics
+- **Total Samples**: 2,817 unique jailbreak attempts per model
+- **Models Evaluated**: 6 (GPT-4.1, Claude-Sonnet-4, Qwen3-235B, Kimi-K2, DeepSeek-V3.1, Gemini-2.5-Flash)
+- **Source Datasets**: 3 (SafeMTData_Attack600, SafeMTData_1K, MHJ_local)
+- **Turn Range**: 1-34 turns (median: 5 turns)
+- **Token Range**: 23-1,392 tokens (median: 128 tokens)
 
-Across GPT-4.1, Claude-Sonnet-4, and Qwen3-235B-A22B-FP8, Claude-Sonnet-4 attains the best objective-extraction accuracy (0.515) and calibration (ECE 0.296; Brier 0.324); GPT-4.1 and Qwen3-235B-A22B-FP8 tie at 0.441 but exhibit overconfidence (mean confidence ≈ 0.88 vs. accuracy ≈ 0.44; Wrong-at-0.90 ≈ 48–52%). Performance varies substantially by dataset (≈ 0.167–0.865). See the preprint for complete details.
+## File Structure
 
-## What's in this repository?
+The Excel file contains 13 sheets:
 
-- `OBJEX_dataset.xlsx`: evaluation data supporting objective extraction and metacognitive calibration analyses across multi-turn jailbreak transcripts.
+### 1. Labeling Sheet
+- **Sheet Name**: `Labeling`
+- **Purpose**: Human annotations and ground truth labels
+- **Key Columns**:
+  - `label`: Human-annotated correctness label
 
-The Excel workbook includes:
+### 2. Extraction Sheets (6 sheets)
+One for each model: `extracted_[model_name]`
 
-- A human-labeling sheet with gold objectives and correctness labels
-- Per-model extraction sheets (`extracted_[model_name]`) with predicted base objectives and self-reported confidences
-- Per-model similarity sheets (`similarity_[model_name]`) with semantic similarity to gold, and auxiliary fields
+**Columns**:
+- `source`: Dataset source (SafeMTData_Attack600/1K, MHJ_local)
+- `base_prompt`: Original harmful request
+- `jailbreak_turns`: Full conversation in JSON format
+- `num_turns`: Number of conversation turns (1-34)
+- `turn_1` to `turn_12`: Individual turn contents
+- `extracted_base_prompt`: Model's extraction result
+- `extraction_confidence`: Self-reported confidence (0-100)
+- `transcript_tokens`: Total token count
+- `transcript_length`: Character count
+- `tokens_per_turn`: Average tokens per turn
+- `token_category`: Length category (Short/Medium/Long/Very Long)
 
-Note: column names broadly match the paper’s description (transcript, turns, extracted objective, confidence, similarity). Minor naming differences may exist depending on export version.
+### 3. Similarity Sheets (6 sheets)
+One for each model: `similarity_[model_name]`
 
-## Reproducing key metrics
+**Columns**:
+- All columns from extraction sheets, plus:
+- `similarity_score`: Semantic similarity (0-1) between original and extracted
+- `similarity_category`: Categorical similarity rating
+- `reasoning`: Explanation for similarity score
 
-- Objective-extraction accuracy is computed by thresholding semantic similarity against the calibrated τ* = 0.61 (calibrated once on N = 100).
-- Calibration is reported via ECE, Brier score, Wrong-at-High-Confidence, and risk-coverage curves; refer to the paper for the full protocol and per-dataset breakdowns.
+## Dataset Composition
 
-## Citation
+### By Source
+| Dataset | Samples | Avg Tokens | Description |
+|---------|---------|------------|-------------|
+| SafeMTData_Attack600 | 600 | 106 | Sophisticated adversarial attacks |
+| SafeMTData_1K | 1,680 | 131 | Mixed difficulty jailbreaks |
+| MHJ_local | 537 | 327 | Multi-turn conversational attacks |
 
-If you use ObjexMT or this dataset, please cite the preprint:
+### By Turn Complexity
+| Turns | Samples | Percentage |
+|-------|---------|------------|
+| 1-2 | 212 | 7.5% |
+| 3-4 | 547 | 19.4% |
+| 5-6 | 1,900 | 67.4% |
+| 7+ | 158 | 5.6% |
 
-```bibtex
-@misc{kim2025objexmt,
-  title         = {ObjexMT: Objective Extraction and Metacognitive Calibration for LLM-as-a-Judge under Multi-Turn Jailbreaks},
-  author        = {Hyunjun Kim and Junwoo Ha and Sangyoon Yu and Haon Park},
-  year          = {2025},
-  eprint        = {2508.16889},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CL},
-  doi           = {10.48550/arXiv.2508.16889},
-  url           = {https://arxiv.org/abs/2508.16889v2}
-}
-```
+## Key Findings
 
-## License and usage
+### Model Performance (τ* = 0.66)
+| Model | Accuracy | 95% CI | ECE |
+|-------|----------|--------|-----|
+| Claude-Sonnet-4 | 0.594 | [0.577, 0.611] | 0.206 |
+| Kimi-K2 | 0.609 | [0.591, 0.626] | 0.259 |
+| DeepSeek-V3.1 | 0.591 | [0.574, 0.608] | 0.279 |
+| Gemini-2.5-Flash | 0.534 | [0.517, 0.551] | 0.362 |
+| Qwen3-235B | 0.471 | [0.454, 0.489] | 0.417 |
+| GPT-4.1 | 0.493 | [0.476, 0.511] | 0.384 |
 
-This repository may include content derived from harmful or adversarial prompts strictly for research purposes. Do not use this material to develop or deploy harmful systems. Please review your institution’s policies and applicable laws before use.
 
-## Contact
-
-For questions or issues, please open a GitHub issue or contact the authors listed in the preprint.
+**Note**: This dataset contains potentially harmful content for research purposes only. It should not be used to develop or deploy harmful systems.
